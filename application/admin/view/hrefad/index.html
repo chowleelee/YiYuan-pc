@@ -1,0 +1,45 @@
+{include file="public/header"} 
+
+<div class="mt-3">
+    <a href="{:url('add')}" class="btn btn-info">添加广告图</a>
+    {if $select_advback}
+    <table class="table">
+        <tr>
+            <th>编号</th>
+            <th>广告图</th>
+            <th>链接</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>{$select_advback['advback_id']}</td>
+            <td title="{$select_advback['advback_img']}">{$select_advback['advback_img']}</td>
+            <td title="{$select_advback['advback_href']}">{$select_advback['advback_href']}</td>
+            <td>✔</td>
+            <td>
+                <a href="{:url('edit',['advback_id'=>$select_advback['advback_id']])}" class="btn btn-info">编辑</a>
+                <a href="{:url('delete',['advback_id'=>$select_advback['advback_id']])}" class="btn btn-danger">删除</a>
+            </td>
+        </tr>
+        {foreach $advback_list as $value}
+        <tr>
+            <td>{$value['advback_id']}</td>
+            <td title="{$value['advback_img']}">{$value['advback_img']}</td>
+            <td title="{$value['advback_href']}">{$value['advback_href']}</td>
+            <td>✖</td>
+            <td>
+                <a href="{:url('edit',['advback_id'=>$value['advback_id']])}" class="btn btn-info">编辑</a>
+                <a href="{:url('delete',['advback_id'=>$value['advback_id']])}" class="btn btn-danger">删除</a>
+            </td>
+        </tr>
+        {/foreach}
+    </table>
+    <div>
+     {$advback_list->render()}
+    </div>
+    {else/}
+    <p>暂无数据</p>
+    {/if}
+</div>
+
+{include file="public/footer"}
